@@ -352,8 +352,8 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        <div className="max-w-[600px] mx-auto px-5 py-6">
-          <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+        <div className="max-w-[600px] mx-auto px-3 sm:px-5 py-4 sm:py-6">
+          <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-gray-100">
 
             {/* Resumo */}
             <div className="bg-[#f8fafc] rounded-xl p-4 mb-6">
@@ -386,9 +386,9 @@ export default function CheckoutPage() {
               <div className="flex justify-center mb-6">
                 <div className="p-3 bg-white rounded-xl border-2 border-gray-200">
                   {qrBase64.startsWith("data:") ? (
-                    <img src={qrBase64} alt="QR Code PIX" className="w-52 h-52" />
+                    <img src={qrBase64} alt="QR Code PIX" className="w-40 h-40 sm:w-52 sm:h-52" />
                   ) : (
-                    <img src={`data:image/png;base64,${qrBase64}`} alt="QR Code PIX" className="w-52 h-52" />
+                    <img src={`data:image/png;base64,${qrBase64}`} alt="QR Code PIX" className="w-40 h-40 sm:w-52 sm:h-52" />
                   )}
                 </div>
               </div>
@@ -462,7 +462,7 @@ export default function CheckoutPage() {
 
   // === CHECKOUT FORM ===
   return (
-    <div className="min-h-screen bg-[#f8fafc] pb-52">
+    <div className="min-h-screen bg-[#f8fafc] pb-60 sm:pb-52">
       {/* === HEADER === */}
       <header>
         <div className="relative h-32 w-full overflow-hidden">
@@ -486,23 +486,23 @@ export default function CheckoutPage() {
             )}
             <button className="w-9 h-9 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-500 text-xs font-bold hover:border-black hover:text-black transition">i</button>
           </div>
-          <div className="flex items-center justify-center gap-1 text-xs text-gray-500 mt-2 pb-4 flex-wrap">
-            <span>💰 Pedido Mínimo <b>{formatPrice(storeInfo.delivery.minOrder)}</b></span>
+          <div className="flex items-center justify-center gap-1 text-[10px] sm:text-xs text-gray-500 mt-2 pb-4 flex-wrap px-2">
+            <span>💰 Mín. <b>{formatPrice(storeInfo.delivery.minOrder)}</b></span>
             <span>🏍️ <b>{storeInfo.delivery.deliveryTimeMin}-{storeInfo.delivery.deliveryTimeMax}</b> min</span>
             <span>• <span className="text-prime-green">Grátis</span></span>
           </div>
         </div>
       </header>
 
-      <div className="max-w-[800px] mx-auto px-4 space-y-4">
+      <div className="max-w-[800px] mx-auto px-2 sm:px-4 space-y-3 sm:space-y-4">
 
         {/* Discount banner */}
         {discountApplied && (
-          <div className="bg-gradient-to-r from-prime-green to-emerald-600 text-white rounded-2xl p-4 flex items-center gap-3 shadow-lg shadow-green-200">
-            <span className="text-3xl">🎉</span>
-            <div className="flex-1">
-              <p className="font-bold text-lg">Cupom de 20% aplicado!</p>
-              <p className="text-sm opacity-90">Você está economizando {formatPrice(discountValue)}</p>
+          <div className="bg-gradient-to-r from-prime-green to-emerald-600 text-white rounded-2xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3 shadow-lg shadow-green-200">
+            <span className="text-2xl sm:text-3xl">🎉</span>
+            <div className="flex-1 min-w-0">
+              <p className="font-bold text-base sm:text-lg">Cupom de 20% aplicado!</p>
+              <p className="text-xs sm:text-sm opacity-90">Você está economizando {formatPrice(discountValue)}</p>
             </div>
           </div>
         )}
@@ -513,8 +513,8 @@ export default function CheckoutPage() {
         )}
 
         {/* === ENDEREÇO === */}
-        <section className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-          <div className="flex items-center gap-3 mb-5 pb-4 border-b-2 border-[#f8fafc]">
+        <section className="bg-white rounded-2xl p-3 sm:p-5 shadow-sm border border-gray-100">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5 pb-3 sm:pb-4 border-b-2 border-[#f8fafc]">
             <div className="w-10 h-10 rounded-full bg-[#5A0001] text-white flex items-center justify-center shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
@@ -524,7 +524,7 @@ export default function CheckoutPage() {
             <div>
               <label className="block text-sm font-semibold text-gray-800 mb-2">CEP *</label>
               <div className="flex gap-2">
-                <input type="text" value={cep} onChange={(e) => handleCepChange(e.target.value)} placeholder="00000-000" className="flex-1 h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+                <input type="text" value={cep} onChange={(e) => handleCepChange(e.target.value)} placeholder="00000-000" className="flex-1 h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
                 <button onClick={buscarCep} disabled={cep.replace(/\D/g, "").length !== 8 || loadingCep} className="bg-[#5A0001] text-white px-5 rounded-xl hover:bg-[#333] transition disabled:opacity-60 disabled:cursor-not-allowed shrink-0">
                   {loadingCep ? "..." : "🔍"}
                 </button>
@@ -532,21 +532,21 @@ export default function CheckoutPage() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-800 mb-2">Rua / Logradouro *</label>
-              <input type="text" value={rua} onChange={(e) => setRua(e.target.value)} className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+              <input type="text" value={rua} onChange={(e) => setRua(e.target.value)} className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
             </div>
             <div className="flex gap-3">
               <div className="flex-1">
                 <label className="block text-sm font-semibold text-gray-800 mb-2">Número</label>
-                <input type="text" value={numero} onChange={(e) => setNumero(e.target.value)} className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+                <input type="text" value={numero} onChange={(e) => setNumero(e.target.value)} className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
               </div>
               <div className="flex-1">
                 <label className="block text-sm font-semibold text-gray-800 mb-2">Complemento</label>
-                <input type="text" value={complemento} onChange={(e) => setComplemento(e.target.value)} placeholder="Apto, Bloco, Casa" className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+                <input type="text" value={complemento} onChange={(e) => setComplemento(e.target.value)} placeholder="Apto, Bloco, Casa" className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
               </div>
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-800 mb-2">Bairro *</label>
-              <input type="text" value={bairro} onChange={(e) => setBairro(e.target.value)} className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+              <input type="text" value={bairro} onChange={(e) => setBairro(e.target.value)} className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
             </div>
             <div className="flex gap-3">
               <div className="flex-1">
@@ -560,14 +560,14 @@ export default function CheckoutPage() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-800 mb-2">Ponto de Referência</label>
-              <input type="text" value={referencia} onChange={(e) => setReferencia(e.target.value)} placeholder="Ex: Próximo à padaria, portão azul..." className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+              <input type="text" value={referencia} onChange={(e) => setReferencia(e.target.value)} placeholder="Ex: Próximo à padaria, portão azul..." className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
             </div>
           </div>
         </section>
 
         {/* === SEUS DADOS === */}
-        <section className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-          <div className="flex items-center gap-3 mb-5 pb-4 border-b-2 border-[#f8fafc]">
+        <section className="bg-white rounded-2xl p-3 sm:p-5 shadow-sm border border-gray-100">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5 pb-3 sm:pb-4 border-b-2 border-[#f8fafc]">
             <div className="w-10 h-10 rounded-full bg-[#5A0001] text-white flex items-center justify-center shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             </div>
@@ -576,45 +576,45 @@ export default function CheckoutPage() {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-gray-800 mb-2">Nome Completo *</label>
-              <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+              <input type="text" value={nome} onChange={(e) => setNome(e.target.value)} className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-800 mb-2">Telefone (WhatsApp) *</label>
-              <input type="tel" value={telefone} onChange={(e) => handlePhoneChange(e.target.value)} placeholder="(00) 00000-0000" className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+              <input type="tel" value={telefone} onChange={(e) => handlePhoneChange(e.target.value)} placeholder="(00) 00000-0000" className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-800 mb-2">Email *</label>
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="seu.email@exemplo.com" className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="seu.email@exemplo.com" className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
             </div>
             <div>
               <label className="block text-sm font-semibold text-gray-800 mb-2">CPF *</label>
-              <input type="text" value={cpf} onChange={(e) => handleCpfChange(e.target.value)} placeholder="000.000.000-00" className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-base focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+              <input type="text" value={cpf} onChange={(e) => handleCpfChange(e.target.value)} placeholder="000.000.000-00" className="w-full h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
             </div>
           </div>
         </section>
 
         {/* === PAGAMENTO === */}
-        <section className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-          <div className="flex items-center gap-3 mb-5 pb-4 border-b-2 border-[#f8fafc]">
+        <section className="bg-white rounded-2xl p-3 sm:p-5 shadow-sm border border-gray-100">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5 pb-3 sm:pb-4 border-b-2 border-[#f8fafc]">
             <div className="w-10 h-10 rounded-full bg-[#5A0001] text-white flex items-center justify-center shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
             </div>
             <h2 className="text-lg font-semibold text-gray-800">Forma de Pagamento</h2>
           </div>
-          <div className="border-2 border-prime-green rounded-2xl p-5 bg-gradient-to-br from-green-50 to-emerald-50 shadow-[0_4px_20px_rgba(7,124,34,0.15)]">
+          <div className="border-2 border-prime-green rounded-2xl p-3 sm:p-5 bg-gradient-to-br from-green-50 to-emerald-50 shadow-[0_4px_20px_rgba(7,124,34,0.15)]">
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 bg-prime-green text-white rounded-xl flex items-center justify-center text-lg">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-prime-green text-white rounded-xl flex items-center justify-center text-lg shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><rect width="5" height="5" x="16" y="16" rx="1"/><rect width="5" height="5" x="9.5" y="9.5" rx="1"/></svg>
               </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-bold text-lg text-gray-800">PIX</span>
-                  <span className="bg-prime-green text-white text-[11px] px-2.5 py-0.5 rounded-full font-semibold uppercase">Recomendado</span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-bold text-base sm:text-lg text-gray-800">PIX</span>
+                  <span className="bg-prime-green text-white text-[10px] sm:text-[11px] px-2 sm:px-2.5 py-0.5 rounded-full font-semibold uppercase">Recomendado</span>
                 </div>
-                <p className="text-sm text-gray-500">Pagamento instantâneo e seguro.</p>
+                <p className="text-xs sm:text-sm text-gray-500">Pagamento instantâneo e seguro.</p>
               </div>
             </div>
-            <div className="flex gap-4 mt-3 text-xs text-prime-green font-medium">
+            <div className="flex gap-3 sm:gap-4 mt-3 text-xs text-prime-green font-medium">
               <span>✓ Sem taxas</span>
               <span>✓ Confirmação rápida</span>
             </div>
@@ -625,39 +625,39 @@ export default function CheckoutPage() {
         </section>
 
         {/* === OPÇÕES DE ENTREGA === */}
-        <section className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-          <div className="flex items-center gap-3 mb-5 pb-4 border-b-2 border-[#f8fafc]">
+        <section className="bg-white rounded-2xl p-3 sm:p-5 shadow-sm border border-gray-100">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5 pb-3 sm:pb-4 border-b-2 border-[#f8fafc]">
             <div className="w-10 h-10 rounded-full bg-[#5A0001] text-white flex items-center justify-center shrink-0">🏍️</div>
             <h2 className="text-lg font-semibold text-gray-800">Opções de entrega</h2>
           </div>
           <div className="space-y-3">
-            <button onClick={() => setDeliveryType("free")} className={`w-full text-left rounded-2xl p-5 border-2 transition-all ${deliveryType === "free" ? "border-prime-green bg-gradient-to-br from-green-50 to-emerald-50 shadow-[0_4px_20px_rgba(7,124,34,0.15)]" : "border-gray-200 bg-[#f8fafc] hover:shadow-md"}`}>
+            <button onClick={() => setDeliveryType("free")} className={`w-full text-left rounded-2xl p-3 sm:p-5 border-2 transition-all ${deliveryType === "free" ? "border-prime-green bg-gradient-to-br from-green-50 to-emerald-50 shadow-[0_4px_20px_rgba(7,124,34,0.15)]" : "border-gray-200 bg-[#f8fafc] hover:shadow-md"}`}>
               <div className="flex items-center gap-3">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white ${deliveryType === "free" ? "bg-prime-green" : "bg-black"}`}>🚚</div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold text-lg">Frete Grátis</span>
-                    <span className="bg-prime-green text-white text-[11px] px-2.5 py-0.5 rounded-full font-semibold">Recomendado</span>
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-white shrink-0 ${deliveryType === "free" ? "bg-prime-green" : "bg-black"}`}>🚚</div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-bold text-base sm:text-lg">Frete Grátis</span>
+                    <span className="bg-prime-green text-white text-[10px] sm:text-[11px] px-2 py-0.5 rounded-full font-semibold">Recomendado</span>
                   </div>
-                  <p className="text-sm text-gray-500">Tempo de entrega: 30 a 50 minutos</p>
+                  <p className="text-xs sm:text-sm text-gray-500">Tempo de entrega: 30 a 50 minutos</p>
                 </div>
               </div>
-              <div className="flex gap-4 mt-3 ml-15 text-xs text-prime-green font-medium">
+              <div className="flex gap-3 mt-3 ml-[52px] sm:ml-[60px] text-xs text-prime-green font-medium">
                 <span>✓ Sem custo adicional</span>
                 <span>✓ Entrega padrão</span>
               </div>
             </button>
-            <button onClick={() => setDeliveryType("fast")} className={`w-full text-left rounded-2xl p-5 border-2 transition-all ${deliveryType === "fast" ? "border-prime-green bg-gradient-to-br from-green-50 to-emerald-50 shadow-[0_4px_20px_rgba(7,124,34,0.15)]" : "border-gray-200 bg-[#f8fafc] hover:shadow-md"}`}>
+            <button onClick={() => setDeliveryType("fast")} className={`w-full text-left rounded-2xl p-3 sm:p-5 border-2 transition-all ${deliveryType === "fast" ? "border-prime-green bg-gradient-to-br from-green-50 to-emerald-50 shadow-[0_4px_20px_rgba(7,124,34,0.15)]" : "border-gray-200 bg-[#f8fafc] hover:shadow-md"}`}>
               <div className="flex items-center gap-3">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white ${deliveryType === "fast" ? "bg-prime-green" : "bg-black"}`}>🚀</div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold text-lg">Frete Rápido</span>
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-white shrink-0 ${deliveryType === "fast" ? "bg-prime-green" : "bg-black"}`}>🚀</div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-bold text-base sm:text-lg">Frete Rápido</span>
                   </div>
-                  <p className="text-sm text-gray-500">Tempo de entrega: 10 a 25 minutos</p>
+                  <p className="text-xs sm:text-sm text-gray-500">Tempo de entrega: 10 a 25 minutos</p>
                 </div>
               </div>
-              <div className="flex gap-4 mt-3 ml-15 text-xs font-medium">
+              <div className="flex gap-3 mt-3 ml-[52px] sm:ml-[60px] text-xs font-medium">
                 <span className="text-prime-green">⚡ Entrega expressa</span>
                 <span className="text-prime-green">🕐 Prioridade máxima</span>
               </div>
@@ -670,29 +670,30 @@ export default function CheckoutPage() {
 
         {/* === RESUMO DO PEDIDO === */}
         <section className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
-          <div className="bg-gradient-to-r from-[#8b0103] to-[#3e0001] text-white px-5 py-4">
-            <h3 className="font-semibold text-lg flex items-center gap-2">🛍️ Resumo do Pedido</h3>
-            <div className="flex justify-between text-sm mt-2 opacity-90">
+          <div className="bg-gradient-to-r from-[#8b0103] to-[#3e0001] text-white px-3 sm:px-5 py-3 sm:py-4">
+            <h3 className="font-semibold text-base sm:text-lg flex items-center gap-2">🛍️ Resumo do Pedido</h3>
+            <div className="flex justify-between text-xs sm:text-sm mt-2 opacity-90">
               <span>{itemCount} {itemCount === 1 ? "item" : "itens"}</span>
               <span>Entrega {deliveryType === "free" ? "Grátis" : formatPrice(fastFee)}</span>
             </div>
           </div>
-          <div className="p-5 space-y-3">
+          <div className="p-3 sm:p-5 space-y-3">
             {items.map((item) => (
-              <div key={item.id} className="flex items-start gap-3 p-4 bg-[#f8fafc] rounded-xl border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all">
-                <Image src={item.product.image} alt={item.product.name} width={60} height={60} className="w-15 h-15 rounded-xl object-cover border border-gray-200 shrink-0" />
+              <div key={item.id} className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-[#f8fafc] rounded-xl border border-gray-200 hover:-translate-y-0.5 hover:shadow-md transition-all">
+                <Image src={item.product.image} alt={item.product.name} width={60} height={60} className="w-12 h-12 sm:w-15 sm:h-15 rounded-xl object-cover border border-gray-200 shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-gray-800">{item.quantity}x {item.product.name}</p>
+                  <p className="font-semibold text-gray-800 text-sm sm:text-base truncate">{item.quantity}x {item.product.name}</p>
                   {item.selectedExtras.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-1">
                       {item.selectedExtras.map((e) => (
-                        <span key={e.extra.id} className="text-xs bg-white px-2 py-1 rounded-md text-gray-500">+ {e.extra.name}</span>
+                        <span key={e.extra.id} className="text-[10px] sm:text-xs bg-white px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md text-gray-500">+ {e.extra.name}</span>
                       ))}
                     </div>
                   )}
+                  <span className="font-bold text-prime-green text-sm sm:text-lg mt-1 block sm:hidden">{formatPrice(item.unitTotal * item.quantity)}</span>
                 </div>
-                <span className="font-bold text-prime-green text-lg whitespace-nowrap">{formatPrice(item.unitTotal * item.quantity)}</span>
-                <button onClick={() => removeItem(item.id)} className="w-9 h-9 rounded-lg bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition shrink-0 text-sm">✕</button>
+                <span className="font-bold text-prime-green text-lg whitespace-nowrap hidden sm:block">{formatPrice(item.unitTotal * item.quantity)}</span>
+                <button onClick={() => removeItem(item.id)} className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition shrink-0 text-xs sm:text-sm">✕</button>
               </div>
             ))}
           </div>
@@ -710,14 +711,14 @@ export default function CheckoutPage() {
               <div className={`text-center text-white text-sm font-bold py-2.5 uppercase tracking-wider ${selected ? "bg-gradient-to-r from-prime-green to-emerald-700" : "bg-gradient-to-r from-[#840002] to-[#610002]"}`}>
                 Adicione {bump.name}!
               </div>
-              <div className="flex items-center gap-4 p-5">
-                <Image src={bump.image} alt={bump.name} width={80} height={80} className="w-20 h-20 rounded-xl object-cover border-2 border-gray-200 shrink-0" />
+              <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-5">
+                <Image src={bump.image} alt={bump.name} width={80} height={80} className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover border-2 border-gray-200 shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-lg text-gray-800">{bump.name}</p>
-                  <p className="text-sm text-gray-500 leading-relaxed">{bump.description}</p>
-                  <div className="flex items-center gap-2 mt-2">
-                    <span className="line-through text-gray-400 text-sm">{formatPrice(bump.oldPrice)}</span>
-                    <span className="text-prime-green font-bold text-lg">{formatPrice(bump.price)}</span>
+                  <p className="font-bold text-base sm:text-lg text-gray-800 truncate">{bump.name}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 leading-relaxed line-clamp-2">{bump.description}</p>
+                  <div className="flex items-center gap-2 mt-1 sm:mt-2">
+                    <span className="line-through text-gray-400 text-xs sm:text-sm">{formatPrice(bump.oldPrice)}</span>
+                    <span className="text-prime-green font-bold text-base sm:text-lg">{formatPrice(bump.price)}</span>
                   </div>
                 </div>
                 <div className={`w-6 h-6 rounded border-2 flex items-center justify-center shrink-0 transition ${selected ? "bg-prime-green border-prime-green" : "border-gray-300 bg-white"}`}>
@@ -729,8 +730,8 @@ export default function CheckoutPage() {
         })}
 
         {/* === OBSERVAÇÕES === */}
-        <section className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-          <div className="flex items-center gap-3 mb-5 pb-4 border-b-2 border-[#f8fafc]">
+        <section className="bg-white rounded-2xl p-3 sm:p-5 shadow-sm border border-gray-100">
+          <div className="flex items-center gap-3 mb-4 sm:mb-5 pb-3 sm:pb-4 border-b-2 border-[#f8fafc]">
             <div className="w-10 h-10 rounded-full bg-[#5A0001] text-white flex items-center justify-center shrink-0">💬</div>
             <h2 className="text-lg font-semibold text-gray-800">Observações do Pedido</h2>
           </div>
@@ -740,29 +741,29 @@ export default function CheckoutPage() {
 
       {/* === BARRA FIXA INFERIOR === */}
       <div className="fixed bottom-0 left-0 w-full bg-white border-t-2 border-gray-100 shadow-[0_-4px_12px_rgba(0,0,0,0.08)] z-50">
-        <div className="max-w-[800px] mx-auto px-5 py-4">
-          <div className="flex justify-between text-sm mb-1">
+        <div className="max-w-[800px] mx-auto px-3 sm:px-5 py-3 sm:py-4">
+          <div className="flex justify-between text-xs sm:text-sm mb-1">
             <span className="text-gray-500">Subtotal:</span>
             <span>{formatPrice(subtotalWithBumps)}</span>
           </div>
           {discountApplied && (
-            <div className="flex justify-between text-sm mb-1">
+            <div className="flex justify-between text-xs sm:text-sm mb-1">
               <span className="text-prime-green font-semibold">Desconto (20%):</span>
               <span className="text-prime-green font-semibold">- {formatPrice(discountValue)}</span>
             </div>
           )}
-          <div className="flex justify-between text-sm mb-1">
+          <div className="flex justify-between text-xs sm:text-sm mb-1">
             <span className="text-gray-500">Taxa de Entrega:</span>
             <span className="text-prime-green font-medium">{finalDeliveryFee === 0 ? "Grátis" : formatPrice(finalDeliveryFee)}</span>
           </div>
-          <div className="flex justify-between text-lg font-bold pt-3 border-t-2 border-gray-100 mb-3">
+          <div className="flex justify-between text-base sm:text-lg font-bold pt-2 sm:pt-3 border-t-2 border-gray-100 mb-2 sm:mb-3">
             <span>Total:</span>
             <span className="text-prime-green">{formatPrice(finalTotal)}</span>
           </div>
           <button
             onClick={handleConfirm}
             disabled={!isFormValid}
-            className="w-full bg-prime-green text-white font-semibold py-4 rounded-xl text-base hover:bg-emerald-700 transition flex items-center justify-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            className="w-full bg-prime-green text-white font-semibold py-3 sm:py-4 rounded-xl text-sm sm:text-base hover:bg-emerald-700 transition flex items-center justify-center gap-2 disabled:bg-gray-300 disabled:cursor-not-allowed"
           >
             ✓ Confirmar Pedido
           </button>
