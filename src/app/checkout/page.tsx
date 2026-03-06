@@ -524,9 +524,9 @@ export default function CheckoutPage() {
             <div>
               <label className="block text-sm font-semibold text-gray-800 mb-2">CEP *</label>
               <div className="flex gap-2">
-                <input type="text" value={cep} onChange={(e) => handleCepChange(e.target.value)} placeholder="00000-000" className="flex-1 h-12 border-2 border-gray-200 px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
-                <button onClick={buscarCep} disabled={cep.replace(/\D/g, "").length !== 8 || loadingCep} className="bg-[#5A0001] text-white px-5 rounded-xl hover:bg-[#333] transition disabled:opacity-60 disabled:cursor-not-allowed shrink-0">
-                  {loadingCep ? "..." : "🔍"}
+                <input type="text" value={cep} onChange={(e) => handleCepChange(e.target.value)} onBlur={buscarCep} placeholder="00000-000" className="flex-1 min-w-0 h-12 border-2 border-gray-200 px-3 sm:px-4 rounded-xl text-[16px] focus:border-black focus:outline-none focus:shadow-[0_0_0_3px_rgba(0,0,0,0.1)] transition" />
+                <button onClick={buscarCep} disabled={cep.replace(/\D/g, "").length !== 8 || loadingCep} className="bg-[#5A0001] text-white px-3 sm:px-5 rounded-xl hover:bg-[#333] transition disabled:opacity-60 disabled:cursor-not-allowed shrink-0 text-sm sm:text-base">
+                  {loadingCep ? "..." : "Buscar"}
                 </button>
               </div>
             </div>
