@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-prime-green: #077c22;
+  --color-prime-green-light: #d7fdd7;
+  --color-prime-purple: #5b0e5c;
+  --color-prime-badge-bg: #f2cdcd;
+  --color-prime-badge-text: #5c0e0e;
+  --color-prime-border: #cecece;
+  --color-prime-text: #403f3f;
+  --color-prime-gray: #676767;
+
+  --font-poppins: "Poppins", sans-serif;
+
+  --animate-pulse-green: pulse-green 2s ease-in-out infinite;
+  --animate-blink: blink 0.9s linear infinite;
+  --animate-countdown: countdown-pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%,
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(7, 124, 34, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(7, 124, 34, 0);
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes countdown-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-poppins);
+  color: var(--color-prime-text);
+  background: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a5aaad;
+  border-radius: 10px;
+}
