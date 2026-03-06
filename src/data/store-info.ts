@@ -1,13 +1,13 @@
 import { StoreInfo } from "@/types/StoreInfo";
 
 export const storeInfo: StoreInfo = {
-  name: "Brother's Burger",
+  name: "Brothers Burguer",
   logo: "/images/logo.png",
   coverImage: "/images/cover.png",
   rating: 4.9,
   reviewCount: 2136,
   socialLinks: {
-    instagram: "https://www.instagram.com/oficialprimeburguer/",
+    instagram: "https://www.instagram.com/brothersburguer_ofc/",
   },
   openHours: {
     open: 8,
